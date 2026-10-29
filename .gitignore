@@ -1,0 +1,15 @@
+# Local/runtime material; never commit machine-specific environments or logs.
+.venv/
+**/.venv/
+*.onnx
+*.onnx.json
+*.log
+backups/
+**/backups/
+.DS_Store
+Thumbs.db
+# Personal assets can be supplied locally and are not required for the public default.
+assets/personal/
+assets/private/
+# Generated local overlays may include local system/profile content.
+.config/ama/generated/

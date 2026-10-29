@@ -1,0 +1,87 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "type": "kitty-icat",
+    "source": "~/.config/ama/brand/ama-welcome.png",
+    "width": 39,
+    "height": 22,
+    "padding": {
+      "top": 0,
+      "left": 1,
+      "right": 3
+    }
+  },
+  "display": {
+    "separator": "  ",
+    "color": {
+      "keys": "#38BDF8",
+      "title": "#60A5FA",
+      "output": "#DCE7F5",
+      "separator": "#64748B"
+    },
+    "key": {
+      "width": 9,
+      "type": "string"
+    },
+    "percent": {
+      "type": 3,
+      "color": {
+        "green": "#34D399",
+        "yellow": "#FBBF24",
+        "red": "#F87171"
+      }
+    },
+    "bar": {
+      "width": 10,
+      "char": {
+        "elapsed": "■",
+        "total": "─"
+      }
+    }
+  },
+  "modules": [
+    "title",
+    "separator",
+    {
+      "type": "os",
+      "key": "OS",
+      "format": "{name} {version}"
+    },
+    {
+      "type": "host",
+      "key": "Device"
+    },
+    {
+      "type": "shell",
+      "key": "Shell"
+    },
+    {
+      "type": "terminal",
+      "key": "Terminal"
+    },
+    {
+      "type": "cpu",
+      "key": "CPU",
+      "format": "{name}"
+    },
+    {
+      "type": "gpu",
+      "key": "GPU"
+    },
+    {
+      "type": "memory",
+      "key": "RAM"
+    },
+    {
+      "type": "disk",
+      "key": "Disk",
+      "folders": [
+        "/"
+      ]
+    },
+    {
+      "type": "battery",
+      "key": "Battery"
+    }
+  ]
+}

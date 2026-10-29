@@ -1,0 +1,58 @@
+# =========================================================
+# AMA ROBOTICS LAB — interactive Zsh startup
+# Keep syntax highlighting LAST so it can wrap the final ZLE widgets.
+# =========================================================
+
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init zsh)"
+fi
+
+if [[ -r /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+  source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+# AMA configuration + first-window greeting
+if [[ -o interactive ]]; then
+  export SHELL=/usr/bin/zsh
+  [[ -r "$HOME/.config/ama/zsh/ama.zsh" ]] && source "$HOME/.config/ama/zsh/ama.zsh"
+
+  if [[ -n "${KITTY_WINDOW_ID:-}" && "${TERM:-}" == "xterm-kitty" && -z "${TMUX:-}" && -z "${AMA_WELCOME_SHOWN:-}" ]]; then
+    export AMA_WELCOME_SHOWN=1
+    "$HOME/.config/ama/scripts/welcome.sh" || true
+  fi
+fi
+
+# From an ordinary terminal, calling `kitty` opens AMA's launcher
+# in the current directory and then exits this temporary shell.
+kitty() {
+  if [[ $# -eq 0 && -z "${KITTY_WINDOW_ID:-}" && "${TERM:-}" != "xterm-kitty" ]]; then
+    local kitty_dir="$PWD"
+    fc -AI 2>/dev/null || true
+    nohup "$HOME/.config/ama/scripts/launch_kitty.sh" \
+      --directory "$kitty_dir" >/dev/null 2>&1 &!
+    sleep 0.5
+    exit
+  else
+    "$HOME/.config/ama/scripts/launch_kitty.sh" "$@"
+  fi
+}
+
+# VS Code launcher with the AMA coding sound.
+code() {
+  "$HOME/.config/ama/scripts/launch_vscode.sh" --force-user-env "$@"
+}
+
+# Must remain the last plugin sourced in .zshrc.
+if [[ -r /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+  source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+setopt interactive_comments
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"
+export HISTFILE=$HOME/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
+eval "$(atuin init zsh)"
+alias bat="batcat"

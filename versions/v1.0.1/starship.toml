@@ -1,0 +1,75 @@
+"$schema" = "https://starship.rs/config-schema.json"
+add_newline = true
+palette = 'ama'
+right_format = "$time"
+
+format = '''
+[╭─](bold ama_blue)$os$directory[ ⌬ ᴀᴍᴀ ](bold ama_cyan)$git_branch$git_status$python${env_var.ROS_DISTRO}$cmd_duration
+[╰─❯](bold ama_blue) '''
+
+[palettes.ama]
+ama_blue = '#60A5FA'
+ama_cyan = '#22D3EE'
+ama_green = '#22C55E'
+ama_yellow = '#EAB308'
+ama_orange = '#FB923C'
+ama_gray = '#A1A1AA'
+ama_ros = '#C084FC'
+ama_error = '#F87171'
+
+[os]
+disabled = false
+style = 'bold ama_blue'
+format = '[$symbol ]($style)'
+
+[os.symbols]
+Ubuntu = ''
+Linux = ''
+
+[directory]
+style = 'bold ama_cyan'
+format = '[ $path ]($style)'
+truncation_length = 3
+truncation_symbol = '…/'
+read_only = ' 󰌾'
+
+[git_branch]
+symbol = ''
+style = 'bold ama_green'
+format = '[$symbol $branch ]($style)'
+
+[git_status]
+style = 'bold ama_green'
+format = '[$up_to_date$conflicted$stashed$modified$staged$renamed$deleted$untracked$ahead_behind ]($style)'
+up_to_date = '✔'
+conflicted = '✖'
+stashed = '⚑'
+modified = '!'
+staged = '+'
+renamed = '»'
+deleted = '✘'
+untracked = '?'
+ahead = '⇡'
+behind = '⇣'
+diverged = '⇕'
+[python]
+symbol = ' '
+style = 'bold ama_yellow'
+format = '[ $symbol$version( \($virtualenv\)) ]($style)'
+detect_files = ['requirements.txt', 'pyproject.toml', 'setup.py', 'main.py']
+
+[cmd_duration]
+min_time = 1000
+style = 'bold ama_orange'
+format = '[ took $duration ]($style)'
+
+[time]
+disabled = false
+time_format = '%H:%M'
+style = 'ama_gray'
+format = '[◷ $time]($style)'
+
+[env_var.ROS_DISTRO]
+variable = 'ROS_DISTRO'
+style = 'bold #C084FC'
+format = ' [󱚝](bold #C084FC) [𝐑𝐎𝐒 : $env_value](bold ama_ros) [](bold #C084FC) '

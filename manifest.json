@@ -1,13 +1,20 @@
 {
   "project": "AMA-Terminal-Setup",
-  "version": "v1.0.0",
+  "version": "v1.0.1",
   "included": [
-    "starship prompt",
-    "zsh helper layer",
-    "kitty config",
-    "tmux config",
-    "btop starter config",
-    "lazygit starter config",
-    "git-states test lab"
+    "Starship prompt and Git status indicators",
+    "Zsh helper layer and portable Kitty/VS Code launchers",
+    "Kitty and Fastfetch configuration with default AMA artwork",
+    "Welcome-screen builder and preview script",
+    "Optional startup/coding audio assets",
+    "tmux, btop, and lazygit configuration",
+    "Git-state test lab",
+    "backup-aware installer and diagnostics"
+  ],
+  "excluded_by_design": [
+    "machine-specific Python virtual environments",
+    "large ONNX models",
+    "runtime logs and generated local overlays",
+    "personal profile/signature assets"
   ]
 }
