@@ -1,0 +1,13 @@
+{
+  "project": "AMA-Terminal-Setup",
+  "version": "v1.0.0",
+  "included": [
+    "starship prompt",
+    "zsh helper layer",
+    "kitty config",
+    "tmux config",
+    "btop starter config",
+    "lazygit starter config",
+    "git-states test lab"
+  ]
+}
